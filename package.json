@@ -1,0 +1,34 @@
+{
+  "name": "claudia-user",
+  "version": "2.0.0",
+  "description": "store and get data from dynamodb using Claudia",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "*.js"
+  ],
+  "scripts": {
+    "create": "claudia create --region us-west-2 --api-module index --policies policies --configure-db",
+    "deploy": "claudia update",
+    "reconfigure": "claudia update --configure-db"
+  },
+  "author": {
+    "name": "nkltam2003@gmail.com"
+  },
+  "keywords": [
+    "claudia",
+    "aws-lambda",
+    "dynamodb"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kktam/claudia-user.git"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.4.11",
+    "claudia-api-builder": "^2.5.1"
+  },
+  "devDependencies": {
+    "claudia": "^2.14.2"
+  }
+}
