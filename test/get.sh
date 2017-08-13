@@ -1,1 +1,1 @@
-curl -H "Content-Type: application/json" https://[API ID].execute-api.[REGION].amazonaws.com/latest/users/12
+curl -H "Content-Type: application/json" https://[APP].execute-api.[REGION].amazonaws.com/latest/user/12

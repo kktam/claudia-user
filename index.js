@@ -9,13 +9,19 @@ module.exports = api;
 // Create new user
 api.post('/user', function (request) {
 	'use strict';
+
+	var items = {};
+	var values = request.body;
+	Object.keys(values).map(function(k, i) { 
+		let data = values[k];
+		items[k] = data;
+	}); 
+
+	items["id"]= request.body.userId;
+
 	var params = {
 		TableName: request.env.tableName,
-		Item: {
-			id: request.body.userId,
-			name: request.body.name,
-			age: request.body.age
-		}
+		Item: items
 	};
 	// return dynamo result directly
 	return dynamoDb.put(params).promise();
@@ -30,7 +36,7 @@ api.get('/user/{id}', function (request) {
 	params = {
 		TableName: request.env.tableName,
 		Key: {
-			userid: id
+			id: id
 		}
 	};
 
@@ -49,7 +55,7 @@ api.delete('/user/{id}', function (request) {
 	params = {
 		TableName: request.env.tableName,
 		Key: {
-			userid: id
+			id: id
 		}
 	};
 	// return a completely different result when dynamo completes
