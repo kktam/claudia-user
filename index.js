@@ -1,6 +1,7 @@
 /*global require, module*/
 var ApiBuilder = require('claudia-api-builder'),
 	AWS = require('aws-sdk'),
+	moment = require('moment'),
 	api = new ApiBuilder(),
 	dynamoDb = new AWS.DynamoDB.DocumentClient();
 
@@ -10,14 +11,23 @@ module.exports = api;
 api.post('/user', function (request) {
 	'use strict';
 
+	var hasCreateDate = false;
 	var items = {};
 	var values = request.body;
 	Object.keys(values).map(function(k, i) { 
 		let data = values[k];
 		items[k] = data;
+
+		if (k == 'createDate') {
+			hasCreateDate = true;
+		}
 	}); 
 
-	items["id"]= request.body.userId;
+	if (!hasCreateDate) {
+		const timestamp = new Date();
+		items['createDate'] = moment(timestamp).format();
+		items['createDateUTC'] = moment.utc(timestamp).format();		
+	}
 
 	var params = {
 		TableName: request.env.tableName,

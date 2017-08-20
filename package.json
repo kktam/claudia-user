@@ -26,7 +26,8 @@
   },
   "dependencies": {
     "aws-sdk": "^2.4.11",
-    "claudia-api-builder": "^2.5.1"
+    "claudia-api-builder": "^2.5.1",
+    "moment": "^2.18.1"
   },
   "devDependencies": {
     "claudia": "^2.14.2"
